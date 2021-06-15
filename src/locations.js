@@ -27,7 +27,7 @@ export default [
         id: 3,
         name: 'Garibaldi Lake',
         description: 'its a lake',
-        tags: ['trip', 'hike'],
+        tags: ['hike'],
         geometry: {
           location:{
             lat: 49.93815501705335,
@@ -39,7 +39,7 @@ export default [
         id: 4,
         name: 'Tunnel Bluffs',
         description: 'sadffs',
-        tags: ['trip', 'hike'],
+        tags: ['hike'],
         geometry: {
           location:{
             lat: 49.490111079658824, 
@@ -73,13 +73,13 @@ export default [
       },
       {
         id: 7,
-        name: 'Jericho Beach',
-        description: 'sadffs',
-        tags: ['beach'],
+        name: 'Granville Island',
+        description: 'Charming cultural & artistic mainstay famous for a daily public market with 50+ food vendors.',
+        tags: [],
         geometry: {
           location:{
-            lat: 49.272575258141416, 
-            lng: -123.19439346554829
+            lat: 49.271385095551764, 
+            lng: -123.13403274949407
           }
         }
       },

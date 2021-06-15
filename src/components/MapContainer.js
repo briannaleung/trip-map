@@ -38,6 +38,7 @@ export class MapContainer extends React.Component {
             bootstrapURLKeys={{ key: API_KEY }}
             defaultCenter={locations[0].geometry.location}
             defaultZoom={12}
+            debounced
             yesIWantToUseGoogleMapApiInternals
             onGoogleApiLoaded={({ map, maps }) => this.handleApiLoaded(map, maps)}
             onChildClick={this.markerClick}
