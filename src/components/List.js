@@ -5,18 +5,17 @@ import styled from 'styled-components';
 import ListItem from './ListItem.js'
 
 const ListComponent = styled.ul`
- 
+    list-style: none;
+    padding-left: 0;
+    overflow: scroll;
+    height: 98%;
 `;
-
-
     
 const List = ({ items }) => {
-    console.log("here", items)
-
     return(
         <ListComponent>
             { items.map((item) => {
-                return <ListItem item={item}></ListItem>
+                return <ListItem key={item.id} item={item}></ListItem>
             }) }
         </ListComponent>
     )

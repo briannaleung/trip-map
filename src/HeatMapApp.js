@@ -1,31 +1,42 @@
-import React from 'react';
-import MapContainer from './components/MapContainer.js';
+import React, { useState } from 'react';
+import { MapContainer } from './components/MapContainer.js';
 import List from './components/List.js';
 import styled from 'styled-components';
 import SearchBar from './components/SearchBar.js';
+import locations from './locations.js';
 
 const HeatMapAppContainer = styled.div`
     display: flex;
     flex-direction: row;
+    overflow: hidden;
 `;
 
 const SideBar = styled.div`
-    width: 30%;
+    width: 40vw;
+    height: 100vh;
 `;
 
+
 const HeatMapApp = () => {
-    const items = [
-        {id: 1, title: 'niho'},
-        {id: 2, title: 'sdfsdf'},
-        {id: 3, title: 'nisffho'}
-    ]
+    // const [latLng, setLatLng] = useState({
+    //     lat: items[0].lat,
+    //     lng: items[0].lng
+    // });
+
+    // const panMap = (place) => {
+    //     setLatLng({
+    //         lat: place.geometry.location.lat(),
+    //         lnt: place.geometry.location.lng()
+    //     }) 
+    // }
+    // <SearchBar panMap={panMap} ></SearchBar>
+
     return (
         <HeatMapAppContainer>
             <SideBar>
-                <SearchBar></SearchBar>
-                <List items={items}></List>
+                <List items={locations}></List>
             </SideBar>
-            <MapContainer>
+            <MapContainer places={locations}>
             </MapContainer>
         </HeatMapAppContainer>
     );
