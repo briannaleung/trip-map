@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
+import { Map, Marker, InfoWindow, GoogleApiWrapper } from "google-maps-react";
 import styled from 'styled-components';
 import locations from '../locations';
 
@@ -29,9 +29,19 @@ class MapContainer extends React.Component {
           { this.state.places.map((place, i) => {
             return (
               <Marker
+                title={place.name}
+                name={place.name}
                 key={i}
                 position={place.geometry.location}
-              />
+              >
+                <InfoWindow
+                  visible
+                  >
+                    <div>
+                      <p>Click on the map or drag the marker to select location where the incident occurred</p>
+                    </div>
+                </InfoWindow>
+              </Marker>
             );
           }) }
         </Map>

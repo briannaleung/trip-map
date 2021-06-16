@@ -4,6 +4,8 @@ import List from './components/List.js';
 import styled from 'styled-components';
 import SearchBar from './components/SearchBar.js';
 import locations from './locations.js';
+import { GoogleApiWrapper } from "google-maps-react";
+
 
 const HeatMapAppContainer = styled.div`
     display: flex;
@@ -44,17 +46,7 @@ class HeatMapApp extends React.Component {
     }
        
     setMapCenter = (place) => {
-        console.log(place);
         this.moveCenterSearch(place.geometry.location);
-    }
-
-    addTempMarker = (latLng) => {
-        console.log(this.mapRef.current.map);
-        // let marker = new google.maps.Marker({
-        //     position: latLng,
-        //     map: this.mapRef.current.map
-        //   });
-        // this.moveCenter(latLng);
     }
 
     moveCenterSearch = (latLng) => {
@@ -64,14 +56,14 @@ class HeatMapApp extends React.Component {
         window.setTimeout(() => {
             this.mapRef.current.map.setZoom(pos);
         },1000);
-    }
+      }
 
     render() {
         return (
             <HeatMapAppContainer>
                 <SideBar>
                     <SearchContainer>
-                        <SearchBar handleSearch={this.moveCenterSearch}></SearchBar>
+                        <SearchBar mapRef={this.mapRef} handleSearch={this.moveCenterSearch}></SearchBar>
                     </SearchContainer>
                     <List items={locations} handleItemClick={this.setMapCenter}></List>
                 </SideBar>
@@ -82,8 +74,6 @@ class HeatMapApp extends React.Component {
             </HeatMapAppContainer>
         );
     }
-    
-    
   }
 
   export default HeatMapApp
