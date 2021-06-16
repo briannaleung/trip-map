@@ -3,7 +3,7 @@ export default [
         id: 1,
         name: 'Home',
         description: 'Home is Vancouver',
-        tags: ['home', 'Frequent location'],
+        tags: ['Home', 'Frequent location'],
         geometry: {
           location:{
             lat: 49.25741372437692,
@@ -26,7 +26,7 @@ export default [
       {
         id: 3,
         name: 'Garibaldi Lake',
-        description: 'its a lake',
+        description: 'A lake on a mountain.',
         tags: ['hike'],
         geometry: {
           location:{
@@ -38,7 +38,7 @@ export default [
       {
         id: 4,
         name: 'Tunnel Bluffs',
-        description: 'sadffs',
+        description: 'Steep rocky trail with a great view.',
         tags: ['hike'],
         geometry: {
           location:{
@@ -50,7 +50,7 @@ export default [
       {
         id: 5,
         name: 'Jericho Beach',
-        description: 'sadffs',
+        description: 'Sandy beach with a great view.',
         tags: ['beach'],
         geometry: {
           location:{
@@ -75,7 +75,7 @@ export default [
         id: 7,
         name: 'Granville Island',
         description: 'Charming cultural & artistic mainstay famous for a daily public market with 50+ food vendors.',
-        tags: [],
+        tags: ['food'],
         geometry: {
           location:{
             lat: 49.271385095551764, 

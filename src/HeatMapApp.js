@@ -27,7 +27,8 @@ const MapContainer = styled.div`
 
 const SearchContainer = styled.div`
     position: absolute;
-    padding: 20px 0 0 0;
+    padding: 20px 0 20px 0;
+    background: white;
 `;
 
 class HeatMapApp extends React.Component {
