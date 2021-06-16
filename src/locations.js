@@ -3,7 +3,7 @@ export default [
         id: 1,
         name: 'Home',
         description: 'Home is Vancouver',
-        tags: ['home'],
+        tags: ['home', 'Frequent location'],
         geometry: {
           location:{
             lat: 49.25741372437692,

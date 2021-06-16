@@ -8,6 +8,8 @@ const Item = styled.li`
     text-align: left;
     display: flex;
     flex-direction: row;
+    cursor: pointer;
+    align-items: flex-start;
 `;
 
 const Title = styled.p`
@@ -21,21 +23,32 @@ const Description = styled.p`
 `;
 
 const Icon = styled.div`
-    margin: 10px;
+    margin: 5px 5px 0 0;
 `;
 
-const ListItem = ({ item }) => {
-    const handleClick = (e) => {
-        console.log(e.target);
-    }
+const Tag = styled.span`
+    background-color: grey;
+    border-radius: 3px;
+    padding: 3px;
+    font-size: 0.6em;
+    margin-right: 2px;
+    color: white;
+    text-transform: capitalize;
+`;
+
+const ListItem = (props) => {
     return(
-        <Item onClick={handleClick}>
+        <Item onClick={() => props.handleItemClick(props.item)}>
             <Icon>
                 <FaMapMarkerAlt></FaMapMarkerAlt>
             </Icon>
             <div>
-                <Title>{item.name}</Title>
-                <Description><em>{item.description}</em></Description>
+                <Title>{props.item.name}</Title>
+                <Description><em>{props.item.description}</em></Description>
+                { props.item.tags.map((tag, i) => {
+                    return(<Tag key={i}>{tag}</Tag>)
+                })
+                 }
             </div>
         </Item>
     )

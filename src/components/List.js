@@ -11,11 +11,11 @@ const ListComponent = styled.ul`
     height: 98%;
 `;
     
-const List = ({ items }) => {
+const List = (props) => {
     return(
         <ListComponent>
-            { items.map((item) => {
-                return <ListItem key={item.id} item={item}></ListItem>
+            { props.items.map((item) => {
+                return <ListItem key={item.id} item={item} handleItemClick={props.handleItemClick}></ListItem>
             }) }
         </ListComponent>
     )
