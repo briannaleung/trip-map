@@ -5,12 +5,6 @@ import locations from '../locations';
 
 const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
-const GoogleMapContainer = styled.div`
-  height: 100vh;
-  overflow: hidden;
-  width: 70vw;
-`;
-
 class MapContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -20,24 +14,27 @@ class MapContainer extends React.Component {
   }
 
   render() {
+    const style = {
+      height: '100vh',
+      width: '70vw'
+    }
     return (
-      <GoogleMapContainer>
           <Map
             ref={this.props.mapRef}
             google={this.props.google}
-            zoom={13}
+            zoom={15}
             initialCenter={this.props.center}
+            style={style}
         >
-          {this.state.places.map((place, i) => {
+          { this.state.places.map((place, i) => {
             return (
               <Marker
                 key={i}
                 position={place.geometry.location}
               />
             );
-          })}
+          }) }
         </Map>
-      </GoogleMapContainer>
     )
   }
 }

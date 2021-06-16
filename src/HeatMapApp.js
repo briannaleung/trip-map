@@ -1,5 +1,5 @@
 import React from 'react';
-import MapContainer from './components/MapContainer.js';
+import Map from './components/MapContainer.js';
 import List from './components/List.js';
 import styled from 'styled-components';
 import SearchBar from './components/SearchBar.js';
@@ -8,7 +8,6 @@ import locations from './locations.js';
 const HeatMapAppContainer = styled.div`
     display: flex;
     flex-direction: row;
-    overflow: hidden;
 `;
 
 const SideBar = styled.div`
@@ -16,6 +15,11 @@ const SideBar = styled.div`
     height: 100vh;
 `;
 
+const MapContainer = styled.div`
+    height: 100vh;
+    width: 70vw;
+    box-sizing: border-box;
+`;
 
 class HeatMapApp extends React.Component {
     constructor(props) {
@@ -24,23 +28,41 @@ class HeatMapApp extends React.Component {
           places: locations
          };
         this.mapRef = React.createRef();
-      }
+    }
        
-    handleItemClick = (item) => {
+    setMapCenter = (place) => {
+        console.log(place);
+        this.moveCenter(place.geometry.location);
+    }
+
+    addTempMarker = (latLng) => {
+        console.log(this.mapRef.current.map);
+        // let marker = new google.maps.Marker({
+        //     position: latLng,
+        //     map: this.mapRef.current.map
+        //   });
+        // this.moveCenter(latLng);
+    }
+
+    moveCenterSearch = (latLng) => {
         let pos = this.mapRef.current.map.getZoom();
-        this.mapRef.current.map.setZoom(11);
-        this.mapRef.current.map.setCenter(item.geometry.location);
-        window.setTimeout(() => {this.mapRef.current.map.setZoom(pos);},1000);
+        this.mapRef.current.map.setZoom(12);
+        this.mapRef.current.map.setCenter(latLng);
+        window.setTimeout(() => {
+            this.mapRef.current.map.setZoom(pos);
+        },1000);
     }
 
     render() {
         return (
             <HeatMapAppContainer>
                 <SideBar>
-                    <SearchBar></SearchBar>
-                    <List items={locations} handleItemClick={this.handleItemClick}></List>
+                    <SearchBar handleSearch={this.moveCenterSearch}></SearchBar>
+                    <List items={locations} handleItemClick={this.setMapCenter}></List>
                 </SideBar>
-                <MapContainer mapRef={this.mapRef} center={locations[1].geometry.location}>
+                <MapContainer>
+                    <Map mapRef={this.mapRef} center={locations[1].geometry.location}>
+                    </Map>
                 </MapContainer>
             </HeatMapAppContainer>
         );
