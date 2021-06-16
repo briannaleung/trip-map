@@ -7,8 +7,10 @@ import ListItem from './ListItem.js'
 const ListComponent = styled.ul`
     list-style: none;
     padding-left: 0;
-    overflow: scroll;
-    height: 98%;
+    overflow-y: scroll;
+    height: 94%;
+    margin-top: 40px;
+    border-top: 1px solid grey;
 `;
     
 const List = (props) => {

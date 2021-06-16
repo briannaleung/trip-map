@@ -5,6 +5,17 @@ import PlacesAutocomplete, {
 } from 'react-places-autocomplete';
 
 import { GoogleApiWrapper } from "google-maps-react";
+import styled from 'styled-components';
+
+const AutoCompleteDropDownContainer = styled.div`
+  width: 30vw;
+  font-size: 12px;
+`;
+
+const LoadingContainer = styled.div`
+  background: white;
+`;
+
 const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 class LocationSearchInput extends React.Component {
@@ -17,13 +28,13 @@ class LocationSearchInput extends React.Component {
     this.setState({ address });
   };
  
-  handleSelect = address => {
+  handleSelect = (address) => {
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
-      .then(latLng => console.log('Success', latLng))
+      .then(latLng => this.props.handleSearch(latLng))
       .catch(error => console.error('Error', error));
   };
- 
+
   render() {
     return (
       <PlacesAutocomplete
@@ -39,16 +50,27 @@ class LocationSearchInput extends React.Component {
                 className: 'location-search-input',
               })}
             />
-            <div className="autocomplete-dropdown-container">
-              {loading && <div>Loading...</div>}
+            <AutoCompleteDropDownContainer>
+              {loading && <LoadingContainer>Loading...</LoadingContainer>}
               {suggestions.map(suggestion => {
                 const className = suggestion.active
                   ? 'suggestion-item--active'
                   : 'suggestion-item';
-                // inline style for demonstration purpose
+
+                const activeSuggestion = {
+                  backgroundColor: '#fafafa',
+                  cursor: 'pointer',
+                  padding: '2px'
+                };
+
+                const inactiveSuggestion = {
+                  backgroundColor: '#ffffff',
+                  cursor: 'pointer',
+                  padding: '2px'
+                }
                 const style = suggestion.active
-                  ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                  : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                  ? activeSuggestion : inactiveSuggestion;
+
                 return (
                   <div
                     {...getSuggestionItemProps(suggestion, {
@@ -60,7 +82,7 @@ class LocationSearchInput extends React.Component {
                   </div>
                 );
               })}
-            </div>
+            </AutoCompleteDropDownContainer>
           </div>
         )}
       </PlacesAutocomplete>

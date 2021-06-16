@@ -10,6 +10,10 @@ const Item = styled.li`
     flex-direction: row;
     cursor: pointer;
     align-items: flex-start;
+
+    &:hover {
+        background-color: #fafafa;
+    }
 `;
 
 const Title = styled.p`
@@ -24,6 +28,7 @@ const Description = styled.p`
 
 const Icon = styled.div`
     margin: 5px 5px 0 0;
+    color: red;
 `;
 
 const Tag = styled.span`
