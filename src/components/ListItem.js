@@ -32,7 +32,7 @@ const Icon = styled.div`
 `;
 
 const Tag = styled.span`
-    background-color: grey;
+    background-color: cadetblue;
     border-radius: 3px;
     padding: 3px;
     font-size: 0.6em;

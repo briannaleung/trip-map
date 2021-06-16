@@ -1,6 +1,5 @@
 import React from 'react';
 import { Map, Marker, InfoWindow, GoogleApiWrapper } from "google-maps-react";
-import styled from 'styled-components';
 import locations from '../locations';
 
 const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;

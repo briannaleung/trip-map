@@ -15,6 +15,11 @@ const LoadingContainer = styled.div`
 `;
 
 const Button = styled.button`
+  width: 100px;
+  margin-bottom: 10px;
+`;
+
+const SearchContainer = styled.div`
 `;
 
 class LocationSearchInput extends React.Component {
@@ -69,7 +74,8 @@ class LocationSearchInput extends React.Component {
 
   render() {
     return (
-      <div>
+      <SearchContainer>
+        <Button onClick={() => this.getCoordinates(this.state.address)}>Add Marker</Button>
         <PlacesAutocomplete
           value={this.state.address}
           onChange={this.handleChange}
@@ -122,8 +128,7 @@ class LocationSearchInput extends React.Component {
             </div>
           )}
         </PlacesAutocomplete>
-        <Button onClick={() => this.getCoordinates(this.state.address)}>Add Marker</Button>
-      </div>
+      </SearchContainer>
     );
   }
 }

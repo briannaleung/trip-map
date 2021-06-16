@@ -9,7 +9,7 @@ const ListComponent = styled.ul`
     padding-left: 0;
     overflow-y: scroll;
     height: 94%;
-    margin-top: 40px;
+    margin-top: 100px;
     border-top: 1px solid grey;
 `;
     

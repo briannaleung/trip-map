@@ -26,15 +26,9 @@ const MapContainer = styled.div`
 `;
 
 const SearchContainer = styled.div`
-    display: flex;
-    position: fixed;
-    justify-content: center;
-    padding: 10px 0 0 0;
-    box-sizing: border-box;
-    width: 30vw;
-    height: auto;
+    position: absolute;
+    padding: 20px 0 0 0;
 `;
-
 
 class HeatMapApp extends React.Component {
     constructor(props) {
@@ -64,7 +58,7 @@ class HeatMapApp extends React.Component {
             id: this.state.places.length + 2,
             name: address,
             description: '',
-            tags: [],
+            tags: ['New'],
             geometry: {
             location: latLng
             }
