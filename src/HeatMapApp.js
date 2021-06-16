@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { setState } from 'react';
 import Map from './components/MapContainer.js';
 import List from './components/List.js';
 import styled from 'styled-components';
@@ -39,12 +39,12 @@ const SearchContainer = styled.div`
 class HeatMapApp extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-          places: locations
-         };
         this.mapRef = React.createRef();
+        this.state = {
+            places: locations
+        };
     }
-       
+
     setMapCenter = (place) => {
         this.moveCenterSearch(place.geometry.location);
     }
@@ -58,14 +58,34 @@ class HeatMapApp extends React.Component {
         },1000);
       }
 
+    addListItem = (address, latLng) => {
+        let old = this.state.places;
+        let location = {
+            id: this.state.places.length + 2,
+            name: address,
+            description: '',
+            tags: [],
+            geometry: {
+            location: latLng
+            }
+        }
+        this.setState({
+            places: old.concat([location])
+        });
+    }
+
     render() {
         return (
             <HeatMapAppContainer>
                 <SideBar>
                     <SearchContainer>
-                        <SearchBar mapRef={this.mapRef} handleSearch={this.moveCenterSearch}></SearchBar>
+                        <SearchBar
+                            addPermenantMarker={this.addListItem}
+                            mapRef={this.mapRef}
+                            handleSearch={this.moveCenterSearch}
+                        ></SearchBar>
                     </SearchContainer>
-                    <List items={locations} handleItemClick={this.setMapCenter}></List>
+                    <List items={this.state.places} handleItemClick={this.setMapCenter}></List>
                 </SideBar>
                 <MapContainer>
                     <Map mapRef={this.mapRef} center={locations[1].geometry.location}>

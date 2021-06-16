@@ -14,6 +14,9 @@ const LoadingContainer = styled.div`
   background: white;
 `;
 
+const Button = styled.button`
+`;
+
 class LocationSearchInput extends React.Component {
   constructor(props) {
     super(props);
@@ -54,6 +57,15 @@ class LocationSearchInput extends React.Component {
       .catch(error => console.error('Error', error));
     
   };
+
+  getCoordinates = (address) => {
+    if (address !== '') {
+      geocodeByAddress(address)
+        .then(results => getLatLng(results[0]))
+        .then(latLng => this.props.addPermenantMarker(address, latLng))
+        .catch(error => console.error('Error', error));
+    }
+  }
 
   render() {
     return (
@@ -110,6 +122,7 @@ class LocationSearchInput extends React.Component {
             </div>
           )}
         </PlacesAutocomplete>
+        <Button onClick={() => this.getCoordinates(this.state.address)}>Add Marker</Button>
       </div>
     );
   }
